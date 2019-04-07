@@ -1,3 +1,13 @@
+// Marce, te dejo algunas observaciones sobre tu TP
+// En general esta muy bien. Se nota mucho el esfuerzo y algunas soluciones son
+// muy creativas y prolijas. 
+// Para trabajar a partir de ahora, te recomiendo empezar a mejorar los nombres de tus variables
+// para que sean descriptivos, e ir acostumbrandote a estructuras mas breves que te ahorren codigo
+// (por ejemplo, en lugar de escribir esto:
+//  // ventas = ventas + 1
+//  comenzar a practicar esto:
+//  ventas++)
+
 var local = {
     vendedoras: ["Ada", "Grace", "Hedy", "Sheryl"],
   
@@ -27,7 +37,10 @@ var local = {
   // precioMaquina(componentes): recibe un array de componentes y devuelve el precio de la máquina que se puede armar con esos componentes,
   // que es la suma de los precios de cada componente incluido.
 
-  function precioMaquina(parametros) {
+  function precioMaquina(parametros) { // esto es un detalle, pero preferimos que los nombres de los parametros, 
+                                       // al igual que los de las variables, sean descriptivos: es decir, que 
+                                       // le indiquen a otra persona que esta leyendo, que son los parametros. 
+                                       // En este caso, por ejemplo, "componentes". 
 
     var precioTotal = 0
   
@@ -58,6 +71,10 @@ var local = {
         if (componente == local.ventas[i].componentes[j]) {
           
           suma = suma + 1;
+            // o mas brevemente, 
+            // suma++
+            // o
+            // suma += 1
         }
       }
     }
@@ -105,8 +122,31 @@ var local = {
   }
    console.log(vendedoraDelMes(1, 2019)) 
   
+// bien! una manera mas breve aun (pero mas abstracta) es esta:
+// function vendedoraDelMes(mes, anio) {
+//   var ventasVendedoras = {};
 
+//   for (var i = 0; i < local.ventas.length; i++) {
+//     if (local.ventas[i].fecha.getMonth() + 1 === mes && local.ventas[i].fecha.getFullYear() === anio) {
+//       var vendedora = local.ventas[i].nombreVendedora;
+//       if (!ventasVendedoras[vendedora]) {
+//         ventasVendedoras[vendedora] = 0;
+//       }
 
+//       ventasVendedoras[vendedora] += precioMaquina( local.ventas[i].componentes );
+//     }
+//   }
+
+//   var max = vendedoras[0];
+
+//   for (var i = 0; i < vendedoras.length; i++) {
+//     if (max && ventasVendedoras[vendedoras[i]] > ventasVendedoras[max]) {
+//       max = vendedoras[i];
+//     }
+//   }
+
+//   return max;
+// }
 
 // ventasMes(mes, anio): Obtener las ventas de un mes. El mes es un número entero que va desde el 1 (enero) hasta el 12 (diciembre).
 
@@ -116,7 +156,10 @@ function ventasMes(mes, anio) {
   
     for (var i = 0; i < local.ventas.length; i++){
       if (local.ventas[i].fecha.getMonth() + 1 == mes && local.ventas[i].fecha.getFullYear() == anio) {
-        sumaVentas = sumaVentas +  precioMaquina(local.ventas[i].componentes)      }
+        sumaVentas = sumaVentas +  precioMaquina(local.ventas[i].componentes)      
+      // o mas bremente:
+      // sumaventas += precioMaquina(local.ventas[i].componentes
+      }
     }
       return (sumaVentas)
   }
@@ -131,6 +174,8 @@ function ventasMes(mes, anio) {
   function ventasVendedora(nombre){
   
     var ventasGrace = 0;
+      // esta funcion sirve para cualquier vendedora, 
+      // por lo que seria preferible otro nombre para la variable
     
     for (var i = 0; i < local.ventas.length; i++){
       if (local.ventas[i].nombreVendedora == nombre) {
@@ -189,6 +234,18 @@ function huboVentas(mes, anio){
       }
     }
   
+// una opcion mas breve seria asi:
+
+// function huboVentas(mes, anio) {
+//  sumaVentas = false
+//   for (let i = 0; i < local.ventas.length; i++) {
+//     if (local.ventas[i].fecha.getMonth() + 1 == mes && local.ventas[i].fecha.getFullYear() == anio) {
+//       sumaVentas = true
+//     }
+//   }
+//   return sumaVentas
+// }
+
   console.log( huboVentas(3, 2019) );  
 
 
@@ -260,6 +317,11 @@ function ventasSucursal(sucursal) {
   }
 console.log( ventasSucursal("Centro") ); 
 
+// faltaria responder esta pregunta:
+// Las funciones ventasSucursal y ventasVendedora tienen mucho código en común, 
+//     ya que es la misma funcionalidad pero trabajando con una propiedad distinta. 
+//     Entonces, ¿cómo harías para que ambas funciones reutilicen código y evitemos repetir?
+
 
 // Crear la función sucursalDelMes(mes, anio), que se le pasa dos parámetros numéricos, (mes, anio) y devuelve el nombre de la sucursal 
 //que más vendió en plata en el mes. No cantidad de ventas, sino importe total de las ventas. El importe de una venta es el que indica 
@@ -298,7 +360,7 @@ for (var k = 0; k < arraySucursales.length; k++) {
    return arraySucursales[posicion].nombre
   }
 console.log( sucursalDelMes(1, 2019) );  
- 
+ // bien!
 
 
 //// 3. Para tener una mejor muestra de como está resultando el local, queremos desarrollar un reporte que nos muestre las ventas por sucursal
@@ -319,7 +381,7 @@ function renderPorMes(){
 console.log( renderPorMes() );
 
 
-
+// bien!
 
 // renderPorSucursal(): Muestra una lista del importe total vendido por cada sucursal
 
